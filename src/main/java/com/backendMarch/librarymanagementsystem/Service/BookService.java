@@ -1,5 +1,7 @@
 package com.backendMarch.librarymanagementsystem.Service;
 
+import com.backendMarch.librarymanagementsystem.DTO.BookRequestDto;
+import com.backendMarch.librarymanagementsystem.DTO.BookResponseDto;
 import com.backendMarch.librarymanagementsystem.Entity.Author;
 import com.backendMarch.librarymanagementsystem.Entity.Book;
 import com.backendMarch.librarymanagementsystem.Repository.AuthorRepository;
@@ -13,20 +15,22 @@ public class BookService {
     @Autowired
     AuthorRepository authorRepository;
 
-    public String addBook(Book book) throws Exception {
+    public BookResponseDto addBook(BookRequestDto bookRequestDto)  {
+        Book book = new Book();
+        Author author = authorRepository.findById(bookRequestDto.getAuthorId()).get();
+        book.setTitle(bookRequestDto.getTitle());
+        book.setGenre(bookRequestDto.getGenre());
+        book.setPrice(bookRequestDto.getPrice());
+        book.setIssued(false);
+        book.setAuthor(author);
 
-        Author author;
-        try{
-            author = authorRepository.findById(book.getAuthor().getId()).get();
-        }
-        catch (Exception e){
-            return "Book not Added";
-        }
-
-        List<Book> booksWritten = author.getBooks();
-        booksWritten.add(book);
-
+        author.getBooks().add(book);
         authorRepository.save(author);
-        return "Book addded.";
+
+        BookResponseDto bookResponseDto = new BookResponseDto();
+        bookResponseDto.setPrice(book.getPrice());
+        bookResponseDto.setTitle(book.getTitle());
+
+        return bookResponseDto;
     }
 }

@@ -16,7 +16,7 @@ public class AuthorController {
     @PostMapping("/add")
     public String addAuthor(@RequestBody  Author author){
         authorService.addAuthor(author);
-        return "Author added successfully";
+        return "Author added successfully.";
     }
     @GetMapping("/get_authors")
     public List<Author> getAuthors(){
