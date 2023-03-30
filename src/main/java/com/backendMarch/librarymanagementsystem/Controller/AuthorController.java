@@ -1,6 +1,7 @@
 package com.backendMarch.librarymanagementsystem.Controller;
 
 
+import com.backendMarch.librarymanagementsystem.DTO.AuthorResponseDto;
 import com.backendMarch.librarymanagementsystem.Entity.Author;
 import com.backendMarch.librarymanagementsystem.Service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,9 @@ public class AuthorController {
         authorService.addAuthor(author);
         return "Author added successfully.";
     }
-    @GetMapping("/get_authors")
-    public List<Author> getAuthors(){
-        return authorService.getAuthors();
+    @GetMapping("/get_author")
+    public AuthorResponseDto getAuthors(@RequestParam("authorId") Integer authorId){
+
+        return authorService.getAuthor(authorId);
     }
 }
