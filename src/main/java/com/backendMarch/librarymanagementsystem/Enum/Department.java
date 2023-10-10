@@ -7,3 +7,4 @@ public enum Department {
     EE,
     BIOTECH
 }
+

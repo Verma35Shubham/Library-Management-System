@@ -28,6 +28,7 @@ public class LibraryCard {
     @Enumerated(EnumType.STRING)
     private CardStatus status;
 
+
     @CreationTimestamp
     private Date creationDate;
 

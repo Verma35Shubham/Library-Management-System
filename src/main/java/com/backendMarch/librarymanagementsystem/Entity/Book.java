@@ -38,6 +38,7 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     List<Transaction> transaction = new ArrayList<>();
 
+
     @ManyToOne
     @JoinColumn
     LibraryCard card;

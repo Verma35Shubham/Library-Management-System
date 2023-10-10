@@ -9,3 +9,4 @@ public enum Genre {
     SPIRITUAL,
     BIOGRAPHY
 }
+

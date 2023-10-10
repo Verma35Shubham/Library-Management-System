@@ -37,3 +37,5 @@ public class StudentController {
         return studentService.updateEmail(studentUpdateEmailRequestDto);
     }
 }
+
+
